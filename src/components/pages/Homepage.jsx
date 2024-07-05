@@ -1,22 +1,39 @@
-import LoginCard from "../card/Login";
+import { useState } from "react";
+import LoginCard from "../card/LoginCard";
+import RegisterCard from "../card/RegisterCard";
+import PropTypes from "prop-types";
 
-function Homepage() {
+function Homepage({ onLoginSuccess }) {
+  const [isRegister, setIsRegister] = useState(false);
+
+  const toggleCard = () => {
+    setIsRegister(!isRegister);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="flex flex-col md:flex-row items-center md:items-center w-full max-w-6xl p-4">
         <div className="text-center md:text-left md:flex-1 mb-6 md:mb-0 md:mr-4">
-          <h1 className="text-3xl text-blue-600 mb-4">DESA</h1>
+          <h1 className="text-7xl text-blue-600 mb-4">DESA</h1>
           <p className="mb-4">
             DESA is a platform that helps you to make your decision using Simple
             Additive Weight method.
           </p>
         </div>
         <div className="flex justify-center md:justify-end md:flex-1">
-          <LoginCard />
+          {isRegister ? (
+            <RegisterCard onToggle={toggleCard} />
+          ) : (
+            <LoginCard onToggle={toggleCard} onSuccess={onLoginSuccess} />
+          )}
         </div>
       </div>
     </div>
   );
 }
+
+Homepage.propTypes = {
+  onLoginSuccess: PropTypes.func.isRequired,
+};
 
 export default Homepage;
