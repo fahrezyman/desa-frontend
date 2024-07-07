@@ -1,12 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 
-const LoginCard = ({ onToggle, onSuccess }) => {
+const LoginCard = ({ onToggle }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,9 +22,6 @@ const LoginCard = ({ onToggle, onSuccess }) => {
       );
       console.log("Login successful:", response.data);
       alert("Login successful. You can now access the dashboard.");
-      localStorage.setItem("user_id", response.data.user_id); // Simpan user_id ke localStorage
-      onSuccess(); // Set isLoggedIn to true in the parent component
-      navigate("/saw-process");
     } catch (error) {
       console.error("There was an error logging in:", error);
       alert("Login failed. Please check your credentials and try again.");
@@ -80,7 +75,6 @@ const LoginCard = ({ onToggle, onSuccess }) => {
 
 LoginCard.propTypes = {
   onToggle: PropTypes.func.isRequired,
-  onSuccess: PropTypes.func.isRequired, // Tambahkan proptype untuk onSuccess
 };
 
 export default LoginCard;

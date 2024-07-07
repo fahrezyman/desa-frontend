@@ -1,34 +1,15 @@
-import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
 import Homepage from "./components/pages/Homepage";
-import SAWProcess from "./components/pages/SawProcess";
+import AddAlternative from "./components/pages/AddAlternative";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-  };
-
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={<Homepage onLoginSuccess={handleLoginSuccess} />}
-        />
-        {isLoggedIn ? (
-          <Route path="/saw-process" element={<SAWProcess />} />
-        ) : (
-          <Route path="*" element={<Navigate to="/" />} />
-        )}
+        <Route path="/" element={<Homepage />} />
+        <Route path="/AddAlternative" element={<AddAlternative />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
 
