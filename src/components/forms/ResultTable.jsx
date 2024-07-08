@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 const ResultsTable = ({ criteria, normalized, results }) => {
   return (
     <div>
-      <h2 className="text-2xl font-semibold mt-6 text-purple-600">Results</h2>
+      <h2 className="text-2xl font-semibold mt-6 text-purple-600">Hasil</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white">
           <thead>
             <tr>
-              <th className="px-4 py-2">Alternative</th>
+              <th className="px-4 py-2">Alternatif</th>
               {criteria.map((crit, index) => (
                 <th key={index} className="px-4 py-2">
                   {crit.name}
@@ -31,7 +31,7 @@ const ResultsTable = ({ criteria, normalized, results }) => {
         </table>
       </div>
       <h2 className="text-2xl font-semibold mt-6 text-purple-600">
-        Preference Scores
+        Nilai Preferensi
       </h2>
       <ul className="list-disc pl-6">
         {results.map((result) => (
